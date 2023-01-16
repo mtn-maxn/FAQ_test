@@ -1,0 +1,5 @@
+*
+!.gitignore
+!sections/main-faq.liquid
+!templates/page.faq.json
+!locales/en.default.schema.json
