@@ -1602,7 +1602,8 @@
       "name": "Page"
     },
     "main-faq": {
-      "name": "FAQ"
+      "name": "FAQ",
+      "items": "FAQs"
     },
     "main-password-footer": {
       "name": "Password footer"
