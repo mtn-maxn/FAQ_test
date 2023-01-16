@@ -6,8 +6,8 @@
         "new-faq-item": {
           "type": "faq",
           "settings": {
-            "title": "How to create block?",
-            "answer": "<p>Just open your customizer</p>"
+            "title": "Can I return all or part of my order?",
+            "answer": "Just open your customizer"
           }
         }
       },
