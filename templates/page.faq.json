@@ -1,5 +1,10 @@
 {
   "sections": {
+    "cf80138c-c06e-4dd2-9623-8822c3a8c550": {
+      "type": "component-search-broadcast",
+      "settings": {
+      }
+    },
     "e901c7f1-2d78-474a-8423-2c55225d7702": {
       "type": "custom-fields-pages",
       "blocks": {
@@ -36,7 +41,7 @@
     }
   },
   "order": [
-    "main",
+    "cf80138c-c06e-4dd2-9623-8822c3a8c550",
     "e901c7f1-2d78-474a-8423-2c55225d7702"
   ]
 }
