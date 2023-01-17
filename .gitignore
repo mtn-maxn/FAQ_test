@@ -1,8 +1,1 @@
-*
-!.gitignore
-!sections/main-faq.liquid
-!templates/page.faq.json
-!locales/en.default.schema.json
-!assets/section-main-faq.css
-!assets/section-main-faq.js
-!assets/section-main-faq.css
+.idea
