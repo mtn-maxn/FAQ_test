@@ -1,0 +1,153 @@
+/**
+ * Base CSS file for Custom Fields widget styles.
+ */
+.custom-fields-widgets-wrapper {
+  margin-top: 2rem;
+}
+.custom-fields-widgets-wrapper > div {
+  margin-bottom: 2rem;
+}
+.custom-fields-widgets-wrapper > div:last-child {
+  margin-bottom: 0;
+}
+
+.custom-fields-wrapper > [class*=cf-widget-] {
+  margin-bottom: 2rem;
+}
+
+.custom-fields-section {
+  margin-top: 6rem;
+}
+.custom-fields-section a:empty, .custom-fields-section div:empty, .custom-fields-section section:empty, .custom-fields-section article:empty {
+  display: block;
+}
+.custom-fields-section .custom-field {
+  margin: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  max-width: 1200px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.custom-fields-section .cf-widget-items-wrapper {
+  margin: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  max-width: 1200px;
+}
+.custom-fields-section .custom-fields-section__item > div:not(.custom-field) {
+  margin-bottom: 8rem;
+}
+@media screen and (min-width: 749px) {
+  .custom-fields-section .custom-field {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+  .custom-fields-section .cf-widget-items-wrapper {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
+
+/** START V2 **/
+.custom-fields-section.v2 {
+  width: 100%;
+  margin-top: 0;
+}
+.custom-fields-section.v2 > div {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.custom-fields-section.v2 .cf-widget-section-title {
+  text-align: center;
+}
+.custom-fields-section.v2 .custom-fields-section__item {
+  width: 100%;
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-1-of-12 {
+  width: calc(100% / 12 * 1);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-2-of-12 {
+  width: calc(100% / 12 * 2);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-3-of-12 {
+  width: calc(100% / 12 * 3);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-4-of-12 {
+  width: calc(100% / 12 * 4);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-5-of-12 {
+  width: calc(100% / 12 * 5);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-6-of-12 {
+  width: calc(100% / 12 * 6);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-7-of-12 {
+  width: calc(100% / 12 * 7);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-8-of-12 {
+  width: calc(100% / 12 * 8);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-9-of-12 {
+  width: calc(100% / 12 * 9);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-10-of-12 {
+  width: calc(100% / 12 * 10);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-11-of-12 {
+  width: calc(100% / 12 * 11);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-12-of-12 {
+  width: calc(100% / 12 * 12);
+}
+.custom-fields-section.v2 .custom-fields-section__item:not(.cf-width-12-of-12) {
+  padding-right: 1.5rem;
+}
+.custom-fields-section.v2 .custom-fields-section__item:not(.cf-width-12-of-12):last-child {
+  padding-right: 0;
+}
+@media screen and (max-width: 768px) {
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-1-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-2-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-3-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-4-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-5-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-6-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-7-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-8-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-9-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-10-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-11-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-12-of-12 {
+    width: 100%;
+  }
+}
+.custom-fields-section.v2 .custom-fields-section__item > div:not(.custom-field) {
+  margin-bottom: 0;
+}
+
+/** END V2 **/

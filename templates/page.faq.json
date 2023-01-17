@@ -21,6 +21,17 @@
     },
     "e901c7f1-2d78-474a-8423-2c55225d7702": {
       "type": "custom-fields-pages",
+      "blocks": {
+        "d629ee97-ad94-45ea-bf89-c9b5c81b4612": {
+          "type": "cf_f_fcj",
+          "settings": {
+            "key": "custom_fields.faqs"
+          }
+        }
+      },
+      "block_order": [
+        "d629ee97-ad94-45ea-bf89-c9b5c81b4612"
+      ],
       "settings": {
       }
     }
