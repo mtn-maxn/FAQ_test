@@ -1,4 +1,4 @@
-.collapsible {
+.component-accordion-faq__item {
   display: flex;
   align-items: center;
   text-align: left;
@@ -17,32 +17,33 @@
   transition: color 0.2s ease;
 }
 
-.collapsible:after {
+.component-accordion-faq__item:after {
   content: "▲";
 }
 
-.collapsible:hover {
+.component-accordion-faq__item:hover {
   color: rgba(var(--color-base-accent-1), 0.7);
 }
 
-.collapsible.collapsible--active {
+.component-accordion-faq__item.component-accordion-faq__item--active {
   border-bottom: none;
   color: rgb(var(--color-base-accent-1));
 }
 
-.collapsible.collapsible--active:after {
+.component-accordion-faq__item.component-accordion-faq__item--active:after {
   border-bottom: none;
   transform: rotate(180deg);
 }
 
-.content {
+.component-accordion-faq__content {
   display: none;
   border-bottom: 1px solid rgb(var(--color-base-background-2));
+  background: rgb(var(--color-base-background-1));
   font-size: 16px;
   line-height: 20px;
   padding-bottom: 24px;
 }
 
-.content.content--visible {
+.component-accordion-faq__content.component-accordion-faq__content--visible {
   display: block;
 }
