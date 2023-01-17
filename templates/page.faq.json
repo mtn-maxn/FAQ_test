@@ -11,14 +11,22 @@
           }
         }
       },
-      "block_order": [ "new-faq-item" ],
+      "block_order": [
+        "new-faq-item"
+      ],
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "e901c7f1-2d78-474a-8423-2c55225d7702": {
+      "type": "custom-fields-pages",
+      "settings": {
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "e901c7f1-2d78-474a-8423-2c55225d7702"
   ]
 }
