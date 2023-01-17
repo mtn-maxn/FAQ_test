@@ -11,6 +11,27 @@
         {% case block.settings.key %}
                   {% when "custom_fields.faqs" %}
             {% render "custom_fields.pages.faqs", block:block %}
+                  {% when "custom_fields.tabs_faqs" %}
+            {% render "custom_fields.pages.tabs_faqs", block:block %}
+        
+        {% endcase %}
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  
+    {% if resource_type == "collections" %}
+    <div class="custom-fields-section__collections">
+      {% for block in blocks %}
+      {% if block.type contains "cf_" %}
+      <div {{ block.shopify_attributes }} class="custom-fields-section__item
+                  custom-fields-section__item--{{ block.type }}
+                  custom-fields-section__item--{{ block.type }}--{{ block.settings.key }}
+                  {% if block.settings.cols != blank %}{{ "cf-width-" | append: block.settings.cols | append: "-of-12" }}{% else %}cf-width-12-of-12{% endif %}">
+        {% case block.settings.key %}
+                  {% when "custom_fields.order" %}
+            {% render "custom_fields.collections.order", block:block %}
         
         {% endcase %}
       </div>

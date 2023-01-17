@@ -2,6 +2,7 @@
   "sections": {
     "main": {
       "type": "main-faq",
+      "disabled": true,
       "blocks": {
         "new-faq-item": {
           "type": "faq",
@@ -22,15 +23,33 @@
     "e901c7f1-2d78-474a-8423-2c55225d7702": {
       "type": "custom-fields-pages",
       "blocks": {
-        "d629ee97-ad94-45ea-bf89-c9b5c81b4612": {
-          "type": "cf_f_fcj",
+        "b449351d-14e6-4fbc-b608-4fe4147fcfa5": {
+          "type": "cf_w_tabs2",
           "settings": {
-            "key": "custom_fields.faqs"
+            "key": "custom_fields.tabs_faqs",
+            "section_title_text": "",
+            "section_title_tag": "h2",
+            "section_title_margin_bottom": 1,
+            "section_title_color": "",
+            "cols": "12",
+            "margin_top": 5,
+            "margin_bottom": 5,
+            "widget_dynamic_height": true,
+            "widget_height_speed": 0,
+            "widget_fade_speed": 0,
+            "title_font_size": 18,
+            "title_font_color": "",
+            "title_font_custom": false,
+            "title_font": "helvetica_n4",
+            "title_padding": "12px 25px",
+            "body_font_size": 16,
+            "body_font_color": "",
+            "body_padding": "25px"
           }
         }
       },
       "block_order": [
-        "d629ee97-ad94-45ea-bf89-c9b5c81b4612"
+        "b449351d-14e6-4fbc-b608-4fe4147fcfa5"
       ],
       "settings": {
       }

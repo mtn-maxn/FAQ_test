@@ -151,3 +151,138 @@
 }
 
 /** END V2 **/
+
+
+/**
+ * Accordion Widget CSS.
+ */
+.cf-widget__accordion-v2 .inner {
+  overflow: hidden;
+}
+.cf-widget__accordion-v2 .inner-padding {
+  padding: 0.5rem 2rem 2rem 2rem;
+}
+.cf-widget__accordion-v2 .cf-accordion-title {
+  padding: 0.9rem 60px 1rem 2rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  width: 100%;
+  transition: all 0.25s;
+  position: relative;
+  cursor: pointer;
+}
+.cf-widget__accordion-v2 .cf-accordion-title:hover {
+  opacity: 0.7;
+}
+.cf-widget__accordion-v2 .cf-accordion-title:after {
+  display: block;
+  content: "";
+  background-image: url("cf-arrow-black.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 14px;
+  height: 24.8888888889px;
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  transform: rotateZ(-90deg);
+  transition: all 0.2s;
+}
+.cf-widget__accordion-v2 .cf-widget-item {
+  background-color: #f4f4f4;
+  margin-bottom: 5px;
+}
+.cf-widget__accordion-v2 .cf-widget-item p {
+  margin: 0;
+  padding: 0;
+}
+.cf-widget__accordion-v2 .cf-widget-item p + p {
+  margin-top: 1rem;
+}
+.cf-widget__accordion-v2 .cf-widget-item.closed .cf-accordion-title:after {
+  transform: rotateZ(90deg);
+}
+.cf-widget__accordion-v2.force-one-open[data-open-count="1"] .cf-widget-item:not(.closed) .cf-accordion-title {
+  pointer-events: none;
+  cursor: default;
+}
+
+
+/**
+ * Tabs Widget CSS.
+ */
+.cf-widget__tabs-v2 .cf-widget-items-wrapper {
+  margin: auto;
+  position: relative;
+}
+.cf-widget__tabs-v2 .tab-contents-container {
+  position: relative;
+}
+.cf-widget__tabs-v2 .tab-labels--hidden {
+  display: none;
+}
+.cf-widget__tabs-v2 .tab-labels {
+  margin-bottom: -1px;
+  z-index: 2;
+  position: relative;
+  display: flex;
+  overflow-y: auto;
+}
+.cf-widget__tabs-v2 .cf-tab {
+  display: inline-block;
+  font-size: 1.2rem;
+  padding: 12px 25px 12px 25px;
+  cursor: pointer;
+  position: relative;
+  opacity: 0.35;
+  font-weight: bold;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+  margin-right: -10px;
+  white-space: nowrap;
+}
+.cf-widget__tabs-v2 .cf-tab:hover {
+  opacity: 0.5;
+}
+.cf-widget__tabs-v2 .cf-tab.active {
+  opacity: 1;
+  padding: 12px 25px 12px 25px;
+  pointer-events: none;
+  border-top: 1px solid #eee;
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+  border-radius: 5px 5px 0 0;
+  border-bottom: 1px solid white;
+}
+.cf-widget__tabs-v2 .cf-widget-item {
+  padding: 25px;
+  border: 1px solid #eee;
+}
+.cf-widget__tabs-v2 .cf-widget-item p {
+  margin: 0;
+  padding: 0;
+}
+.cf-widget__tabs-v2 .cf-widget-item p + p {
+  margin-top: 1rem;
+}
+.cf-widget__tabs-v2.js-enabled .tab-contents-container {
+  border: 1px solid #eee;
+  border-radius: 0 5px 5px 5px;
+  background-color: white;
+  z-index: 1;
+}
+.cf-widget__tabs-v2.js-enabled .cf-widget-item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  opacity: 0;
+  z-index: 0;
+  border: none;
+}
+.cf-widget__tabs-v2.js-enabled .cf-widget-item.active {
+  z-index: 5;
+}
+.cf-widget__tabs-v2 .cf-widget-item.active {
+  display: block;
+}
