@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="{{ 'component-accordion-faq.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-accordion-faq.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div id="{{ uid }}">
+    {% for faq in faqs %}
+        <button type="button" class="collapsible" name="">
+            {{ faq.question }}
+        </button>
+        <div class="content">
+            <p>{{ faq.answer }}</p>
+        </div>
+    {% endfor %}
+</div>
+
+<script>
+(function() {
+    const coll = document
+      .getElementById('{{ uid }}')
+      .getElementsByClassName('collapsible')
+
+    for (let i = 0; i < coll.length; i++) {
+    coll[i].addEventListener('click', function() {
+      console.log('test')
+      this.classList.toggle('collapsible--active')
+      const content = this.nextElementSibling
+      content.classList.toggle('content--visible')
+    })
+    }
+})()
+</script>

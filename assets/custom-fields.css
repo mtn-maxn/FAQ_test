@@ -271,9 +271,7 @@
   margin: 0;
   padding: 0;
 }
-.cf-widget__tabs-v2 .cf-widget-item p + p {
-  margin-top: 1rem;
-}
+
 .cf-widget__tabs-v2.js-enabled .tab-contents-container {
   border-radius: 0 5px 5px 5px;
   background-color: white;

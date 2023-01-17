@@ -85,7 +85,8 @@
 
             {% if item.faqs != blank %}
             <div class="cf-widget-field cf-widget-field__faqs cf-widget-field--field_collection_json">
-              {% render 'component-accordion', faqs: item.faqs %}
+              {% capture uid %}{{ item.title }}{{ section.id }}{% endcapture %}
+              {% render 'component-accordion-faq', faqs: item.faqs, uid: uid %}
             </div>
             {% endif %}
 
