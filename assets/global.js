@@ -945,3 +945,8 @@ class ProductRecommendations extends HTMLElement {
 }
 
 customElements.define('product-recommendations', ProductRecommendations);
+
+if(EventBus) {
+  const eventBus = new EventBus()
+}
+
