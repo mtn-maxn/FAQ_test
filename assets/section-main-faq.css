@@ -1,7 +1,3 @@
-.collapsible.collapsible--active {
-  color: rgb(var(--color-base-accent-1));
-}
-
 .collapsible {
   display: flex;
   align-items: center;
@@ -16,23 +12,21 @@
   border-right: none;
   border-bottom: 1px solid rgb(var(--color-base-background-2));
   padding: 25px 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .collapsible:after {
   content: "▲";
-  transition: transform .1s ease;
 }
 
 .collapsible:hover {
-  background: rgb(var(--color-base-background-2));
+  color: rgba(var(--color-base-accent-1), 0.7);
 }
 
 .collapsible.collapsible--active {
   border-bottom: none;
-}
-
-.collapsible.collapsible--active:hover {
-  background: none;
+  color: rgb(var(--color-base-accent-1));
 }
 
 .collapsible.collapsible--active:after {
