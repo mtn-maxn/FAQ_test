@@ -65,7 +65,7 @@
     <div class="tab-labels tab-labels--hidden">
       {% for item in page.metafields["custom_fields"]["tabs_faqs"] %}
       <span class="cf-tab" data-index="{{ forloop.index0 }}">
-        {{ item.title }}
+        {{ item.title | upcase }}
       </span>
       {% endfor %}
     </div>
@@ -76,19 +76,19 @@
       </span>
       <div class="cf-widget-item" data-index="{{ forloop.index0 }}">
         <div class="inner">
-          
+
             {% if item.body != blank %}
             <div class="cf-widget-field cf-widget-field__body cf-widget-field--html">
               {{ item.body }}
             </div>
             {% endif %}
-          
+
             {% if item.faqs != blank %}
             <div class="cf-widget-field cf-widget-field__faqs cf-widget-field--field_collection_json">
               {{ item.faqs }}
             </div>
             {% endif %}
-          
+
         </div>
       </div>
       {% endfor %}

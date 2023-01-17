@@ -37,11 +37,11 @@
             "widget_dynamic_height": true,
             "widget_height_speed": 0,
             "widget_fade_speed": 0,
-            "title_font_size": 18,
+            "title_font_size": 20,
             "title_font_color": "",
             "title_font_custom": false,
             "title_font": "helvetica_n4",
-            "title_padding": "12px 25px",
+            "title_padding": "0px 0px",
             "body_font_size": 16,
             "body_font_color": "",
             "body_padding": "25px"

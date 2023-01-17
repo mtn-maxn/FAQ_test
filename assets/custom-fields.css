@@ -1,5 +1,6 @@
 /**
  * Base CSS file for Custom Fields widget styles.
+ * Modified by mnaidovich
  */
 .custom-fields-widgets-wrapper {
   margin-top: 2rem;
@@ -227,33 +228,41 @@
   position: relative;
   display: flex;
   overflow-y: auto;
+  border-bottom: 1px solid rgb(var(--color-base-background-2));
 }
 .cf-widget__tabs-v2 .cf-tab {
   display: inline-block;
   font-size: 1.2rem;
-  padding: 12px 25px 12px 25px;
+  padding: 12px 0;
   cursor: pointer;
   position: relative;
-  opacity: 0.35;
   font-weight: bold;
-  border: 1px solid transparent;
   transition: all 0.3s;
-  margin-right: -10px;
+  margin-right: 36px;
   white-space: nowrap;
 }
 .cf-widget__tabs-v2 .cf-tab:hover {
   opacity: 0.5;
+  color: rgb(var(--color-base-accent-1));
 }
 .cf-widget__tabs-v2 .cf-tab.active {
+  position: relative;
   opacity: 1;
-  padding: 12px 25px 12px 25px;
+  padding: 12px 0;
   pointer-events: none;
-  border-top: 1px solid #eee;
-  border-left: 1px solid #eee;
-  border-right: 1px solid #eee;
-  border-radius: 5px 5px 0 0;
-  border-bottom: 1px solid white;
+  color: rgb(var(--color-base-accent-1));
 }
+
+.cf-widget__tabs-v2 .cf-tab.active:after {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgb(var(--color-base-accent-1));
+}
+
 .cf-widget__tabs-v2 .cf-widget-item {
   padding: 25px;
   border: 1px solid #eee;
@@ -266,7 +275,6 @@
   margin-top: 1rem;
 }
 .cf-widget__tabs-v2.js-enabled .tab-contents-container {
-  border: 1px solid #eee;
   border-radius: 0 5px 5px 5px;
   background-color: white;
   z-index: 1;
