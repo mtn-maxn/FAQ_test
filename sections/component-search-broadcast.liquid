@@ -1,0 +1,22 @@
+<div id="{{ section.id }}">
+    <input type="text">
+</div>
+
+<script>
+  (function(){
+    const section = document.getElementById('{{ section.id }}')
+    const input = section.getElementsByTagName('input')
+
+    input.addEventListener('change', function() {
+      console.log(this.value)
+    })
+  })()
+</script>
+
+{% schema %}
+    {
+      "name": "Search broadcast",
+      "limit": 1,
+      "tag": "section"
+    }
+{% endschema %}
