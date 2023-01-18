@@ -47,3 +47,29 @@
 .component-accordion-faq__content.component-accordion-faq__content--visible {
   display: block;
 }
+
+.component-accordion-faq__stub {
+  background:  rgb(var(--color-base-background-1));
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  padding: 40px;
+  margin-top: 20px;
+  margin-bottom: 100px;
+  display: none;
+}
+
+.component-accordion-faq__stub--visible {
+  display: block;
+}
+
+.component-accordion-faq__stub h2 {
+  font-size: 20px;
+  line-height: 28px;
+  margin: 6px 0;
+}
+
+.component-accordion-faq__stub p {
+  font-size: 18px;
+  line-height: 28px;
+  margin-top: 6px;
+}
