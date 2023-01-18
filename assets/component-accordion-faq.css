@@ -1,4 +1,9 @@
+.component-accordion-faq {
+  font-family: "Brandon Grotesque", sans-serif;
+}
+
 .component-accordion-faq__item {
+  font-family: inherit;
   display: flex;
   align-items: center;
   text-align: left;
@@ -63,6 +68,8 @@
 }
 
 .component-accordion-faq__stub h2 {
+  font-family: "Brandon Printed", sans-serif;
+  text-transform: uppercase;
   font-size: 20px;
   line-height: 28px;
   margin: 6px 0;

@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="{{ 'component-accordion-faq.css' | asset_url }}" media="print" onload="this.media='all'">
 <noscript>{{ 'component-accordion-faq.css' | asset_url | stylesheet_tag }}</noscript>
 
-<div id="{{ uid }}">
+<div class="component-accordion-faq" id="{{ uid }}">
 	<div class="component-accordion-faq__stub">
 		<h2>sorry!</h2>
 		<h2>we cant find a match.</h2>
@@ -22,7 +22,7 @@
     const component = document.getElementById("{{ uid }}")
 
 	  const stub = component.querySelector('.component-accordion-faq__stub')
-    const faqs = component.getElementsByClassName("component-accordion-faq__item");
+    const faqs = component.getElementsByClassName("component-accordion-faq__item")
 
     for (let i = 0; i < faqs.length; i++) {
       faqs[i].addEventListener("click", function () {
@@ -61,24 +61,24 @@
     }, 300);
 
     if (!eventBus) {
-      console.warn("Instance of EventBus not found. Search will not work");
+      console.warn("Instance of EventBus not found. Search will not work")
       return;
     }
 
     eventBus?.on("faqSearch", handleSearch);
 
     function openFAQ(faq) {
-      faq.classList.add("component-accordion-faq__item--active");
+      faq.classList.add("component-accordion-faq__item--active")
       faq.nextElementSibling.classList.add(
         "component-accordion-faq__content--visible"
-      );
+      )
     }
 
     function closeFAQ(faq) {
-      faq.classList.remove("component-accordion-faq__item--active");
+      faq.classList.remove("component-accordion-faq__item--active")
       faq.nextElementSibling.classList.remove(
         "component-accordion-faq__content--visible"
-      );
+      )
     }
 
     function addHighlights(htmlElement, query) {
@@ -92,5 +92,5 @@
       innerHtml = innerHtml.replaceAll('</mark>', '')
       htmlElement.innerHTML = innerHtml
     }
-  });
+  })
 </script>

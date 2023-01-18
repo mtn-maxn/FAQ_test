@@ -32,8 +32,6 @@
 }
 .custom-fields-section .cf-widget-items-wrapper {
   margin: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
   max-width: 1200px;
 }
 .custom-fields-section .custom-fields-section__item > div:not(.custom-field) {
