@@ -14,24 +14,44 @@
 
 <script>
 window.addEventListener('DOMContentLoaded', () => {
-  if(!eventBus) {
-    console.warn('Instance of EventBus not found. Search will not work')
-    return
-  }
-
-  eventBus?.on('faqSearch', (data) => {
-     console.log(data)
-  })
-
-  const coll = document
+  const faqs = document
     .getElementById('{{ uid }}')
     .getElementsByClassName('component-accordion-faq__item')
 
-  for (let i = 0; i < coll.length; i++) {
-    coll[i].addEventListener('click', function() {
+  for (let i = 0; i < faqs.length; i++) {
+    faqs[i].addEventListener('click', function() {
       this.classList.toggle('component-accordion-faq__item--active')
       this.nextElementSibling.classList.toggle('component-accordion-faq__content--visible')
     })
   }
+
+  const handleSearch = debounce((searchStr = '') => {
+          searchStr = searchStr.trim().toLowerCase()
+
+          for(let i = 0; i < faqs.length; i++) {
+                  if (searchStr && faqs[i].nextElementSibling.innerHTML.toLocaleLowerCase().includes(searchStr)) {
+                          openFAQ(faqs[i])
+                  } else {
+                          closeFAQ(faqs[i])
+                  }
+          }
+  }, 300)
+
+  if(!eventBus) {
+     console.warn('Instance of EventBus not found. Search will not work')
+     return
+  }
+
+  eventBus?.on('faqSearch', handleSearch)
+
+        function openFAQ(faq) {
+                faq.classList.add('component-accordion-faq__item--active')
+                faq.nextElementSibling.classList.add('component-accordion-faq__content--visible')
+        }
+
+        function closeFAQ(faq) {
+                faq.classList.remove('component-accordion-faq__item--active')
+                faq.nextElementSibling.classList.remove('component-accordion-faq__content--visible')
+        }
 })
 </script>
