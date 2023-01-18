@@ -1,13 +1,40 @@
-<div id="{{ section.id }}">
-    <input type="text">
-</div>
+<link rel="stylesheet" href="{{ 'component-search-broadcast.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-search-broadcast.css' | asset_url | stylesheet_tag }}</noscript>
 
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width page-width--narrow section-{{ section.id }}-padding">
+    <div id="{{ section.id }}">
+      <div class="component-search-broadcast__wrap">
+        <button type="submit" class="component-search-broadcast__btn" aria-label="Search FAQ">
+          <svg class="icon icon-search component-search-broadcast__icon">
+            <use xlink:href="#icon-search">
+          </svg>
+        </button>
+        <input placeholder="Search FAQ" class="component-search-broadcast__input" type="text">
+      </div>
+    </div>
+  </div>
+</div>
 <script>
   (function(){
     const section = document.getElementById('{{ section.id }}')
-    const input = section.getElementsByTagName('input')
+    const input = section.querySelector('input')
 
-    input.addEventListener('change', function() {
+    input.addEventListener('input', function() {
       console.log(this.value)
     })
   })()
@@ -17,7 +44,57 @@
     {
       "name": "Search broadcast",
       "tag": "section",
-      "settings": [],
+      "class": "section",
+      "settings": [
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 100,
+          "step": 4,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_top",
+          "default": 36
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 100,
+          "step": 4,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_bottom",
+          "default": 36
+        },
+        {
+          "type": "select",
+          "id": "color_scheme",
+          "options": [
+            {
+              "value": "accent-1",
+              "label": "t:sections.all.colors.accent_1.label"
+            },
+            {
+              "value": "accent-2",
+              "label": "t:sections.all.colors.accent_2.label"
+            },
+            {
+              "value": "background-1",
+              "label": "t:sections.all.colors.background_1.label"
+            },
+            {
+              "value": "background-2",
+              "label": "t:sections.all.colors.background_2.label"
+            },
+            {
+              "value": "inverse",
+              "label": "t:sections.all.colors.inverse.label"
+            }
+          ],
+          "default": "background-1",
+          "label": "t:sections.all.colors.label"
+        }
+      ],
       "presets": [{
         "name": "Search broadcast",
         "category": "Search"
