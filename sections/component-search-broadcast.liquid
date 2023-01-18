@@ -30,14 +30,18 @@
   </div>
 </div>
 <script>
-  (function(){
+  window.addEventListener('DOMContentLoaded', () => {
     const section = document.getElementById('{{ section.id }}')
     const input = section.querySelector('input')
 
     input.addEventListener('input', function() {
-      console.log(this.value)
+      if(!eventBus) {
+        console.warn('Instance of EventBus not found')
+        return
+      }
+      eventBus.emit('faqSearch', this.value)
     })
-  })()
+  })
 </script>
 
 {% schema %}

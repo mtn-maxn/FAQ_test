@@ -972,4 +972,4 @@ class EventBus {
   }
 }
 
-window.EventBus = EventBus
+window.eventBus = new EventBus()

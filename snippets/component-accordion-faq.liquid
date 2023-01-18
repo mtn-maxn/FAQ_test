@@ -13,16 +13,25 @@
 </div>
 
 <script>
-(function() {
-    const coll = document
-        .getElementById('{{ uid }}')
-        .getElementsByClassName('component-accordion-faq__item')
+window.addEventListener('DOMContentLoaded', () => {
+  if(!eventBus) {
+    console.warn('Instance of EventBus not found. Search will not work')
+    return
+  }
 
-    for (let i = 0; i < coll.length; i++) {
-        coll[i].addEventListener('click', function() {
-            this.classList.toggle('component-accordion-faq__item--active')
-            this.nextElementSibling.classList.toggle('component-accordion-faq__content--visible')
-        })
-    }
-})()
+  eventBus?.on('faqSearch', (data) => {
+     console.log(data)
+  })
+
+  const coll = document
+    .getElementById('{{ uid }}')
+    .getElementsByClassName('component-accordion-faq__item')
+
+  for (let i = 0; i < coll.length; i++) {
+    coll[i].addEventListener('click', function() {
+      this.classList.toggle('component-accordion-faq__item--active')
+      this.nextElementSibling.classList.toggle('component-accordion-faq__content--visible')
+    })
+  }
+})
 </script>
