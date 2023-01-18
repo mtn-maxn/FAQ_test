@@ -2,6 +2,11 @@
 <noscript>{{ 'component-accordion-faq.css' | asset_url | stylesheet_tag }}</noscript>
 
 <div id="{{ uid }}">
+	<div class="component-accordion-faq__stub">
+		<h2>sorry!</h2>
+		<h2>we cant find a match.</h2>
+		<p>Please review the word or try another search.</p>
+	</div>
 	{% for faq in faqs %}
 		<button type="button" class="component-accordion-faq__item">
 			{{ faq.question }}

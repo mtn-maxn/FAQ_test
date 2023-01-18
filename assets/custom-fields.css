@@ -39,7 +39,7 @@
 .custom-fields-section .custom-fields-section__item > div:not(.custom-field) {
   margin-bottom: 8rem;
 }
-@media screen and (min-width: 749px) {
+/*@media screen and (min-width: 749px) {
   .custom-fields-section .custom-field {
     padding-left: 5rem;
     padding-right: 5rem;
@@ -48,7 +48,7 @@
     padding-left: 5rem;
     padding-right: 5rem;
   }
-}
+}*/
 
 /** START V2 **/
 .custom-fields-section.v2 {

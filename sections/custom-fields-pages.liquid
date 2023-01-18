@@ -1,4 +1,22 @@
-{% render "blocks.custom_fields" with resource_type: "pages", blocks: section.blocks %}
+{%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+{%- endstyle -%}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+    <div class="page-width page-width--narrow section-{{ section.id }}-padding">
+        {% render "blocks.custom_fields" with resource_type: "pages", blocks: section.blocks %}
+    </div>
+</div>
+
 {% schema %}
   {
     "name": {
@@ -12,6 +30,54 @@
         {
             "type": "paragraph",
             "content": "[Edit Custom Fields](https:\/\/customfields.bonify.io\/dashboard\/shirtestbuy.myshopify.com\/pages\/configure)"
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "min": 0,
+            "max": 100,
+            "step": 4,
+            "unit": "px",
+            "label": "t:sections.all.padding.padding_top",
+            "default": 36
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "min": 0,
+            "max": 100,
+            "step": 4,
+            "unit": "px",
+            "label": "t:sections.all.padding.padding_bottom",
+            "default": 36
+        },
+        {
+            "type": "select",
+            "id": "color_scheme",
+            "options": [
+                {
+                "value": "accent-1",
+                "label": "t:sections.all.colors.accent_1.label"
+                },
+                {
+                "value": "accent-2",
+                "label": "t:sections.all.colors.accent_2.label"
+                },
+                {
+                "value": "background-1",
+                "label": "t:sections.all.colors.background_1.label"
+                },
+                {
+                "value": "background-2",
+                "label": "t:sections.all.colors.background_2.label"
+                },
+                {
+                "value": "inverse",
+                "label": "t:sections.all.colors.inverse.label"
+                }
+            ],
+            "default": "background-1",
+            "label": "t:sections.all.colors.label"
         }
     ],
     "templates": [
