@@ -2,56 +2,83 @@
 <noscript>{{ 'component-accordion-faq.css' | asset_url | stylesheet_tag }}</noscript>
 
 <div id="{{ uid }}">
-    {% for faq in faqs %}
-        <button type="button" class="component-accordion-faq__item">
-            {{ faq.question }}
-        </button>
-        <div class="component-accordion-faq__content">
-            {{ faq.answer }}
-        </div>
-    {% endfor %}
+	{% for faq in faqs %}
+		<button type="button" class="component-accordion-faq__item">
+			{{ faq.question }}
+		</button>
+		<div class="component-accordion-faq__content">
+			{{ faq.answer }}
+		</div>
+	{% endfor %}
 </div>
 
 <script>
-window.addEventListener('DOMContentLoaded', () => {
-  const faqs = document
-    .getElementById('{{ uid }}')
-    .getElementsByClassName('component-accordion-faq__item')
+  window.addEventListener("DOMContentLoaded", () => {
+    const faqs = document
+      .getElementById("{{ uid }}")
+      .getElementsByClassName("component-accordion-faq__item");
 
-  for (let i = 0; i < faqs.length; i++) {
-    faqs[i].addEventListener('click', function() {
-      this.classList.toggle('component-accordion-faq__item--active')
-      this.nextElementSibling.classList.toggle('component-accordion-faq__content--visible')
-    })
-  }
+    for (let i = 0; i < faqs.length; i++) {
+      faqs[i].addEventListener("click", function () {
+        this.classList.toggle("component-accordion-faq__item--active");
+        this.nextElementSibling.classList.toggle(
+          "component-accordion-faq__content--visible"
+        );
+      });
+    }
 
-  const handleSearch = debounce((searchStr = '') => {
-          searchStr = searchStr.trim().toLowerCase()
+    const handleSearch = debounce((searchStr = "") => {
+      searchStr = searchStr.trim().toLowerCase();
 
-          for(let i = 0; i < faqs.length; i++) {
-                  if (searchStr && faqs[i].nextElementSibling.innerHTML.toLocaleLowerCase().includes(searchStr)) {
-                          openFAQ(faqs[i])
-                  } else {
-                          closeFAQ(faqs[i])
-                  }
-          }
-  }, 300)
+      for (let i = 0; i < faqs.length; i++) {
+        const faq = faqs[i]
 
-  if(!eventBus) {
-     console.warn('Instance of EventBus not found. Search will not work')
-     return
-  }
-
-  eventBus?.on('faqSearch', handleSearch)
-
-        function openFAQ(faq) {
-                faq.classList.add('component-accordion-faq__item--active')
-                faq.nextElementSibling.classList.add('component-accordion-faq__content--visible')
+        if (searchStr && faq.nextElementSibling.innerText
+	        .toLocaleLowerCase()
+          .includes(searchStr)
+        ) {
+          removeAllHighlights(faq.nextElementSibling)
+          addHighlights(faq.nextElementSibling, searchStr)
+          openFAQ(faq)
+          console.log(searchStr)
+        } else {
+          closeFAQ(faq)
+          removeAllHighlights(faq.nextElementSibling)
         }
+      }
+    }, 300);
 
-        function closeFAQ(faq) {
-                faq.classList.remove('component-accordion-faq__item--active')
-                faq.nextElementSibling.classList.remove('component-accordion-faq__content--visible')
-        }
-})
+    if (!eventBus) {
+      console.warn("Instance of EventBus not found. Search will not work");
+      return;
+    }
+
+    eventBus?.on("faqSearch", handleSearch);
+
+    function openFAQ(faq) {
+      faq.classList.add("component-accordion-faq__item--active");
+      faq.nextElementSibling.classList.add(
+        "component-accordion-faq__content--visible"
+      );
+    }
+
+    function closeFAQ(faq) {
+      faq.classList.remove("component-accordion-faq__item--active");
+      faq.nextElementSibling.classList.remove(
+        "component-accordion-faq__content--visible"
+      );
+    }
+
+    function addHighlights(htmlElement, query) {
+      const re = new RegExp(`(${query})`, 'gmi')
+      htmlElement.innerHTML = htmlElement.innerText.replaceAll(re, '<mark>$1</mark>')
+    }
+
+    function removeAllHighlights(htmlElement) {
+      let innerHtml = htmlElement.innerHTML
+      innerHtml = innerHtml.replaceAll('<mark>', '')
+      innerHtml = innerHtml.replaceAll('</mark>', '')
+      htmlElement.innerHTML = innerHtml
+    }
+  });
 </script>
