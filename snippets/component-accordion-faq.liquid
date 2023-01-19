@@ -82,6 +82,7 @@
     }
 
     function addHighlights(htmlElement, query) {
+      query = escapeRegExp(query)
       const re = new RegExp(`(${query})`, 'gmi')
       htmlElement.innerHTML = htmlElement.innerText.replaceAll(re, '<mark>$1</mark>')
     }
@@ -91,6 +92,11 @@
       innerHtml = innerHtml.replaceAll('<mark>', '')
       innerHtml = innerHtml.replaceAll('</mark>', '')
       htmlElement.innerHTML = innerHtml
+    }
+
+    /* https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex */
+    function escapeRegExp(string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
     }
   })
 </script>
