@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="{{ 'component-accordion-faq.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-accordion-faq.css' | asset_url | stylesheet_tag }}</noscript>
+
 {% if page.metafields["custom_fields"]["tabs_faqs"] != blank %}
 {% style %}
 {{ block.settings.title_font | font_face }}
@@ -85,8 +88,7 @@
 
             {% if item.faqs != blank %}
             <div class="cf-widget-field cf-widget-field__faqs cf-widget-field--field_collection_json">
-              {% capture uid %}{{ item.title }}{{ section.id }}{% endcapture %}
-              {% render 'component-accordion-faq', faqs: item.faqs, uid: uid %}
+              {% render 'component-accordion-faq', faqs: item.faqs %}
             </div>
             {% endif %}
 
@@ -97,3 +99,5 @@
   </div>
 </div>
 {% endif %}
+
+{{ 'component-accordion-faq.js' | asset_url | script_tag }}
