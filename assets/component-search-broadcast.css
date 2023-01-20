@@ -1,7 +1,7 @@
 .component-search-broadcast__wrap {
   display: flex;
   position: relative;
-  height: 40px;
+  height: 4rem;
   border: var(--inputs-border-width) solid rgba(var(--color-foreground), var(--inputs-border-opacity));
   background-color: rgb(var(--color-background));
   border-radius: var(--inputs-radius);
@@ -13,13 +13,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  width: 40px;
+  height: 4rem;
+  width: 4rem;
 }
 
 .component-search-broadcast__icon {
-  width: 18px;
-  height: 18px;
+  width: 1.8rem;
+  height: 1.8rem;
   color: currentColor;
 }
 
@@ -29,4 +29,5 @@
   border: none;
   outline: none;
   box-shadow: none;
+  background-color: inherit;
 }

@@ -11,7 +11,7 @@
   width: 100%;
   font-size: calc(var(--font-heading-scale) * 2rem);
   line-height: 1.5;
-  background: rgb(var(--color-base-background-1));
+  background-color: rgb(var(--color-background));
   justify-content: space-between;
   border-top: none;
   border-left: none;
