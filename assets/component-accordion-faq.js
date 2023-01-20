@@ -1,5 +1,6 @@
 (function () {
   const blockId = document.currentScript.getAttribute('data-block-id')
+  const eventName = document.currentScript.getAttribute('data-event-name') || 'faqSearch'
 
   window.addEventListener('DOMContentLoaded', () => {
     const currentBlock = document.querySelector(`[id="block-${ blockId }"]`)
@@ -51,7 +52,7 @@
         return;
       }
 
-      eventBus?.on('faqSearch', handleSearch);
+      eventBus?.on(eventName, handleSearch);
     }
 
     function openFAQ(faq) {

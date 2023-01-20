@@ -15,6 +15,7 @@
           "type": "cf_w_tabs2",
           "settings": {
             "key": "custom_fields.tabs_faqs",
+            "event_name": "test",
             "section_title_text": "",
             "section_title_tag": "h2",
             "section_title_margin_bottom": 0,

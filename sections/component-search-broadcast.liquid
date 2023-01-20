@@ -39,7 +39,7 @@
         console.warn('Instance of EventBus not found')
         return
       }
-      eventBus.emit('faqSearch', this.value)
+      eventBus.emit('{{ section.settings.event_name }}', this.value)
     })
   })
 </script>
@@ -50,6 +50,13 @@
       "tag": "section",
       "class": "section",
       "settings": [
+        {
+          "type": "text",
+          "id": "event_name",
+          "label": "Event name",
+          "info": "An event name that will be broadcasting via EventBus",
+          "default": "faqSearch"
+        },
         {
           "type": "range",
           "id": "padding_top",
