@@ -226,7 +226,7 @@
   position: relative;
   display: flex;
   overflow-y: auto;
-  border-bottom: 1px solid rgb(var(--color-base-background-2));
+  border-bottom: var(--inputs-border-width) solid rgba(var(--color-foreground), var(--inputs-border-opacity));
 }
 .cf-widget__tabs-v2 .cf-tab {
   display: inline-block;

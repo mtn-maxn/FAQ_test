@@ -1,7 +1,7 @@
 (function () {
   const blockId = document.currentScript.getAttribute('data-block-id')
 
-  window.addEventListener("DOMContentLoaded", () => {
+  window.addEventListener('DOMContentLoaded', () => {
     const currentBlock = document.querySelector(`[id="block-${ blockId }"]`)
     const accordions = currentBlock.querySelectorAll('[data-id="component-accordion-faq"]')
 
@@ -9,18 +9,18 @@
 
     function initAccordion (accordion) {
       const stub = accordion.querySelector('[data-id="component-accordion-faq__stub"]')
-      const faqs = accordion.querySelectorAll('[data-id=component-accordion-faq__item]')
+      const faqs = accordion.querySelectorAll('[data-id="component-accordion-faq__item"]')
 
       for (let i = 0; i < faqs.length; i++) {
-        faqs[i].addEventListener("click", function () {
-          this.classList.toggle("component-accordion-faq__item--active");
+        faqs[i].addEventListener('click', function () {
+          this.classList.toggle('is-active');
           this.nextElementSibling.classList.toggle(
-            "component-accordion-faq__content--visible"
+            'is-visible'
           );
         });
       }
-      const handleSearch = debounce((searchStr = "") => {
-        const stubVisibleClass = 'component-accordion-faq__stub--visible'
+      const handleSearch = debounce((searchStr = '') => {
+        const stubVisibleClass = 'is-visible'
         stub.classList.remove(stubVisibleClass)
 
         searchStr = searchStr.trim().toLowerCase();
@@ -47,24 +47,24 @@
       }, 300);
 
       if (!eventBus) {
-        console.warn("Instance of EventBus not found. Search will not work")
+        console.warn('Instance of EventBus not found. Search will not work')
         return;
       }
 
-      eventBus?.on("faqSearch", handleSearch);
+      eventBus?.on('faqSearch', handleSearch);
     }
 
     function openFAQ(faq) {
-      faq.classList.add("component-accordion-faq__item--active")
+      faq.classList.add('is-active')
       faq.nextElementSibling.classList.add(
-        "component-accordion-faq__content--visible"
+        'is-visible'
       )
     }
 
     function closeFAQ(faq) {
-      faq.classList.remove("component-accordion-faq__item--active")
+      faq.classList.remove('is-active')
       faq.nextElementSibling.classList.remove(
-        "component-accordion-faq__content--visible"
+        'is-visible'
       )
     }
 

@@ -9,15 +9,12 @@
 }
 
 
-.component-search-broadcast__btn {
+.component-search-broadcast__icon-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 40px;
   width: 40px;
-  border: none;
-  background: none;
-  color: inherit;
 }
 
 .component-search-broadcast__icon {

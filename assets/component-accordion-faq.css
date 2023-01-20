@@ -16,7 +16,7 @@
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom: 1px solid rgb(var(--color-base-background-2));
+  border-bottom: var(--inputs-border-width) solid rgba(var(--color-foreground), var(--inputs-border-opacity));
   padding: 2.5rem 0;
   cursor: pointer;
   transition: color 0.2s ease;
@@ -30,26 +30,26 @@
   color: rgba(var(--color-base-accent-1), 0.7);
 }
 
-.component-accordion-faq__item.component-accordion-faq__item--active {
+.component-accordion-faq__item.is-active {
   border-bottom: none;
   color: rgb(var(--color-base-accent-1));
 }
 
-.component-accordion-faq__item.component-accordion-faq__item--active:after {
+.component-accordion-faq__item.is-active:after {
   border-bottom: none;
   transform: rotate(180deg);
 }
 
 .component-accordion-faq__content {
   display: none;
-  border-bottom: 1px solid rgb(var(--color-base-background-2));
+  border-bottom: var(--inputs-border-width) solid rgba(var(--color-foreground), var(--inputs-border-opacity));
   background: rgb(var(--color-base-background-1));
   font-size: calc(var(--font-heading-scale) * 1.6rem);
   line-height: 1.2;
   padding-bottom: 2.4rem;
 }
 
-.component-accordion-faq__content.component-accordion-faq__content--visible {
+.component-accordion-faq__content.is-visible {
   display: block;
 }
 
@@ -63,7 +63,7 @@
   display: none;
 }
 
-.component-accordion-faq__stub--visible {
+.component-accordion-faq__stub.is-visible {
   display: block;
 }
 
