@@ -276,11 +276,10 @@
   border-radius: 0 5px 5px 5px;
   background-color: white;
   z-index: 1;
+  /* fix broken auto height */
+  height: auto !important;
 }
 .cf-widget__tabs-v2.js-enabled .cf-widget-item {
-  position: absolute;
-  left: 0;
-  top: 0;
   width: 100%;
   opacity: 0;
   z-index: 0;
