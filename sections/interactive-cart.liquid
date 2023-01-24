@@ -5,6 +5,7 @@
 	}
 
   .interactive-cart__background {
+		  visibility: hidden;
 		  background-color: rgba(0,0,0,0.5);
       position: fixed;
       top: 0;
@@ -12,10 +13,13 @@
 		  width: 100vh;
 		  height: 100vh;
       z-index: 9999;
+		  opacity: 0;
+		  transition: opacity .5s ease;
   }
 
-  .interactive-cart__background.is-hidden {
-		  display: none;
+  .interactive-cart__background.is-visible {
+		  visibility: visible;
+		  opacity: 1;
   }
 
   .cart-btn {
@@ -24,10 +28,31 @@
 		  right: 0;
 		  z-index: 9999;
   }
+
+  .interactive-cart__sidebar {
+		  position: fixed;
+      z-index: 9999;
+      top: 0;
+		  right: 0;
+		  width: 400px;
+		  max-width: 90%;
+		  height: 100vh;
+      background: rgb(var(--color-base-background-1));
+		  opacity: 0;
+		  visibility: hidden;
+		  transform: translateX(70%);
+		  transition: transform .3s ease;
+  }
+  .interactive-cart__sidebar.is-open {
+		  transform: translateX(0);
+		  visibility: visible;
+		  opacity: 1;
+  }
 </style>
 
 <interactive-cart class="interactive-cart">
 	<div data-id="interactive-cart-background" class="interactive-cart__background">''</div>
+	<div data-id="interactive-cart-sidebar" class="interactive-cart__sidebar">Hello cart</div>
 	<button class="cart-btn">Show</button>
 </interactive-cart>
 
@@ -37,7 +62,8 @@
       super();
       this.elements = {
         background: this.querySelector('[data-id="interactive-cart-background"]'),
-	      cartBtn: this.querySelector('button')
+	      cartBtn: this.querySelector('button'),
+	      sidebar: this.querySelector('[data-id="interactive-cart-sidebar"]')
       }
 
       this.elements.background.addEventListener('click', this.hideCart.bind(this))
@@ -45,11 +71,13 @@
     }
 
     hideCart() {
-      this.elements.background.hidden = true
+      this.elements.background.classList.remove('is-visible')
+	    this.elements.sidebar.classList.remove('is-open')
     }
 
     showCart() {
-      this.elements.background.hidden = false
+      this.elements.background.classList.add('is-visible')
+	    this.elements.sidebar.classList.add('is-open')
     }
 	}
 
