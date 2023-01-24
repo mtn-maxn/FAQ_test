@@ -945,3 +945,31 @@ class ProductRecommendations extends HTMLElement {
 }
 
 customElements.define('product-recommendations', ProductRecommendations);
+
+class EventBus {
+  constructor() {
+    this.eventObject = {};
+  }
+
+  emit(eventName, data) {
+    const callbackList = this.eventObject[eventName]
+    if (!callbackList) return console.warn(eventName + " not found!")
+    for (let callback of callbackList) {
+      callback(data)
+    }
+  }
+
+  on(eventName, callback) {
+    if (!this.eventObject[eventName]) {
+      this.eventObject[eventName] = []
+    }
+
+    this.eventObject[eventName].push(callback);
+  }
+
+  off(eventName, callback) {
+    this.eventObject[eventName]?.filter(cb => cb !== callback)
+  }
+}
+
+window.eventBus = new EventBus()

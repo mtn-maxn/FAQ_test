@@ -1,0 +1,95 @@
+.component-accordion-faq {
+  font-family: "Brandon Grotesque", sans-serif;
+}
+
+.component-accordion-faq__item {
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 2rem;
+  width: 100%;
+  font-size: calc(var(--font-heading-scale) * 2rem);
+  line-height: 1.5;
+  background-color: rgb(var(--color-background));
+  justify-content: space-between;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: var(--inputs-border-width) solid rgba(var(--color-foreground), var(--inputs-border-opacity));
+  padding: 2.5rem 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.component-accordion-faq__item:after {
+  content: "▲";
+}
+
+.component-accordion-faq__item:hover {
+  color: rgba(var(--color-base-accent-1), 0.7);
+}
+
+.component-accordion-faq__item.is-active {
+  border-bottom: none;
+  color: rgb(var(--color-base-accent-1));
+}
+
+.component-accordion-faq__item.is-active:after {
+  border-bottom: none;
+  transform: rotate(180deg);
+}
+
+.component-accordion-faq__content {
+  display: none;
+  font-size: calc(var(--font-heading-scale) * 1.6rem);
+  line-height: 1.2;
+  background: rgb(var(--color-base-background-1));
+  border-bottom: var(--inputs-border-width) solid rgba(var(--color-foreground), var(--inputs-border-opacity));
+}
+
+.component-accordion-faq__content.is-visible {
+  display: block;
+  transform-origin: top;
+  animation: change-height-in 0.2s ease;
+  padding-bottom: 2.4rem;
+}
+
+.component-accordion-faq__stub {
+  background:  rgb(var(--color-base-background-1));
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.04);
+  border-radius: calc(var(--inputs-radius) * 2);
+  padding: 4rem;
+  margin-top: 2rem;
+  margin-bottom: 10rem;
+  display: none;
+  height: 0;
+}
+
+.component-accordion-faq__stub.is-visible {
+  display: block;
+  height: auto;
+}
+
+.component-accordion-faq__stub-header {
+  font-family: "Brandon Printed", sans-serif;
+  text-transform: uppercase;
+  font-size: calc(var(--font-heading-scale) * 2rem);
+  line-height: 1.2;
+  margin: 0.6rem 0;
+}
+
+.component-accordion-faq__stub-text {
+  font-size: calc(var(--font-heading-scale) * 1.8rem);
+  line-height: 1.5;
+  margin-top: 0.6rem;
+}
+
+@keyframes change-height-in {
+  from {
+    transform: scale(1, 0);
+  }
+  to {
+    transform: scale(1);
+  }
+}

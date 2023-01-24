@@ -1,0 +1,293 @@
+/**
+ * Base CSS file for Custom Fields widget styles.
+ * Modified by mnaidovich
+ */
+.custom-fields-widgets-wrapper {
+  margin-top: 2rem;
+}
+.custom-fields-widgets-wrapper > div {
+  margin-bottom: 2rem;
+}
+.custom-fields-widgets-wrapper > div:last-child {
+  margin-bottom: 0;
+}
+
+.custom-fields-wrapper > [class*=cf-widget-] {
+  margin-bottom: 2rem;
+}
+
+.custom-fields-section {
+  margin-top: 6rem;
+}
+.custom-fields-section a:empty, .custom-fields-section div:empty, .custom-fields-section section:empty, .custom-fields-section article:empty {
+  display: block;
+}
+.custom-fields-section .custom-field {
+  margin: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  max-width: 1200px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.custom-fields-section .cf-widget-items-wrapper {
+  margin: auto;
+  max-width: 1200px;
+}
+.custom-fields-section .custom-fields-section__item > div:not(.custom-field) {
+  margin-bottom: 8rem;
+}
+/*@media screen and (min-width: 749px) {
+  .custom-fields-section .custom-field {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+  .custom-fields-section .cf-widget-items-wrapper {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}*/
+
+/** START V2 **/
+.custom-fields-section.v2 {
+  width: 100%;
+  margin-top: 0;
+}
+.custom-fields-section.v2 > div {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.custom-fields-section.v2 .cf-widget-section-title {
+  text-align: center;
+}
+.custom-fields-section.v2 .custom-fields-section__item {
+  width: 100%;
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-1-of-12 {
+  width: calc(100% / 12 * 1);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-2-of-12 {
+  width: calc(100% / 12 * 2);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-3-of-12 {
+  width: calc(100% / 12 * 3);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-4-of-12 {
+  width: calc(100% / 12 * 4);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-5-of-12 {
+  width: calc(100% / 12 * 5);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-6-of-12 {
+  width: calc(100% / 12 * 6);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-7-of-12 {
+  width: calc(100% / 12 * 7);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-8-of-12 {
+  width: calc(100% / 12 * 8);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-9-of-12 {
+  width: calc(100% / 12 * 9);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-10-of-12 {
+  width: calc(100% / 12 * 10);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-11-of-12 {
+  width: calc(100% / 12 * 11);
+}
+.custom-fields-section.v2 .custom-fields-section__item.cf-width-12-of-12 {
+  width: calc(100% / 12 * 12);
+}
+.custom-fields-section.v2 .custom-fields-section__item:not(.cf-width-12-of-12) {
+  padding-right: 1.5rem;
+}
+.custom-fields-section.v2 .custom-fields-section__item:not(.cf-width-12-of-12):last-child {
+  padding-right: 0;
+}
+@media screen and (max-width: 768px) {
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-1-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-2-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-3-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-4-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-5-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-6-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-7-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-8-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-9-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-10-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-11-of-12 {
+    width: 100%;
+  }
+  .custom-fields-section.v2 .custom-fields-section__item.cf-width-12-of-12 {
+    width: 100%;
+  }
+}
+.custom-fields-section.v2 .custom-fields-section__item > div:not(.custom-field) {
+  margin-bottom: 0;
+}
+
+/** END V2 **/
+
+
+/**
+ * Accordion Widget CSS.
+ */
+.cf-widget__accordion-v2 .inner {
+  overflow: hidden;
+}
+.cf-widget__accordion-v2 .inner-padding {
+  padding: 0.5rem 2rem 2rem 2rem;
+}
+.cf-widget__accordion-v2 .cf-accordion-title {
+  padding: 0.9rem 60px 1rem 2rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  width: 100%;
+  transition: all 0.25s;
+  position: relative;
+  cursor: pointer;
+}
+.cf-widget__accordion-v2 .cf-accordion-title:hover {
+  opacity: 0.7;
+}
+.cf-widget__accordion-v2 .cf-accordion-title:after {
+  display: block;
+  content: "";
+  background-image: url("cf-arrow-black.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 14px;
+  height: 24.8888888889px;
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  transform: rotateZ(-90deg);
+  transition: all 0.2s;
+}
+.cf-widget__accordion-v2 .cf-widget-item {
+  background-color: #f4f4f4;
+  margin-bottom: 5px;
+}
+.cf-widget__accordion-v2 .cf-widget-item p {
+  margin: 0;
+  padding: 0;
+}
+.cf-widget__accordion-v2 .cf-widget-item p + p {
+  margin-top: 1rem;
+}
+.cf-widget__accordion-v2 .cf-widget-item.closed .cf-accordion-title:after {
+  transform: rotateZ(90deg);
+}
+.cf-widget__accordion-v2.force-one-open[data-open-count="1"] .cf-widget-item:not(.closed) .cf-accordion-title {
+  pointer-events: none;
+  cursor: default;
+}
+
+
+/**
+ * Tabs Widget CSS.
+ */
+.cf-widget__tabs-v2 .cf-widget-items-wrapper {
+  margin: auto;
+  position: relative;
+}
+.cf-widget__tabs-v2 .tab-contents-container {
+  position: relative;
+}
+.cf-widget__tabs-v2 .tab-labels--hidden {
+  display: none;
+}
+.cf-widget__tabs-v2 .tab-labels {
+  margin-bottom: -1px;
+  z-index: 2;
+  position: relative;
+  display: flex;
+  overflow-y: auto;
+  border-bottom: var(--inputs-border-width) solid rgba(var(--color-foreground), var(--inputs-border-opacity));
+}
+.cf-widget__tabs-v2 .cf-tab {
+  display: inline-block;
+  font-size: 1.2rem;
+  padding: 12px 0;
+  cursor: pointer;
+  position: relative;
+  font-weight: bold;
+  transition: all 0.3s;
+  margin-right: 36px;
+  white-space: nowrap;
+}
+.cf-widget__tabs-v2 .cf-tab:hover {
+  opacity: 0.5;
+  color: rgb(var(--color-base-accent-1));
+}
+.cf-widget__tabs-v2 .cf-tab.active {
+  position: relative;
+  opacity: 1;
+  padding: 12px 0;
+  pointer-events: none;
+  color: rgb(var(--color-base-accent-1));
+}
+
+.cf-widget__tabs-v2 .cf-tab.active:after {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgb(var(--color-base-accent-1));
+}
+
+.cf-widget__tabs-v2 .cf-widget-item {
+  padding: 25px;
+  border: 1px solid #eee;
+}
+.cf-widget__tabs-v2 .cf-widget-item p {
+  margin: 0;
+  padding: 0;
+}
+.cf-widget__tabs-v2 .cf-widget-item p + p {
+  margin-top: 1rem;
+}
+.cf-widget__tabs-v2.js-enabled .tab-contents-container {
+  border-radius: 0 5px 5px 5px;
+  background-color: white;
+  z-index: 1;
+  /* fix broken auto height */
+  height: auto !important;
+}
+.cf-widget__tabs-v2.js-enabled .cf-widget-item {
+  width: 100%;
+  opacity: 0;
+  z-index: 0;
+  border: none;
+}
+.cf-widget__tabs-v2.js-enabled .cf-widget-item.active {
+  z-index: 5;
+}
+.cf-widget__tabs-v2 .cf-widget-item.active {
+  display: block;
+}

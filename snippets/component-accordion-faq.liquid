@@ -1,0 +1,15 @@
+<div data-id="component-accordion-faq" class="component-accordion-faq">
+	<div data-id="component-accordion-faq__stub" class="component-accordion-faq__stub">
+		<h2 class="component-accordion-faq__stub-header">sorry!</h2>
+		<h2 class="component-accordion-faq__stub-header">we cant find a match.</h2>
+		<p class="component-accordion-faq__stub-text">Please review the word or try another search.</p>
+	</div>
+	{% for faq in faqs %}
+		<button data-id="component-accordion-faq__item" class="component-accordion-faq__item">
+			{{ faq.question }}
+		</button>
+		<div class="component-accordion-faq__content">
+			{{ faq.answer }}
+		</div>
+	{% endfor %}
+</div>

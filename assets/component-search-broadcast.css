@@ -1,0 +1,33 @@
+.component-search-broadcast__wrap {
+  display: flex;
+  position: relative;
+  height: 4rem;
+  border: var(--inputs-border-width) solid rgba(var(--color-foreground), var(--inputs-border-opacity));
+  background-color: rgb(var(--color-background));
+  border-radius: var(--inputs-radius);
+  color: inherit;
+}
+
+
+.component-search-broadcast__icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4rem;
+  width: 4rem;
+}
+
+.component-search-broadcast__icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  color: currentColor;
+}
+
+.component-search-broadcast__input {
+  flex-grow: 1;
+  width: 100%;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-color: inherit;
+}

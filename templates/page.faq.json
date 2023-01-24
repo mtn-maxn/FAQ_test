@@ -1,24 +1,54 @@
 {
   "sections": {
-    "main": {
-      "type": "main-faq",
+    "cf80138c-c06e-4dd2-9623-8822c3a8c550": {
+      "type": "component-search-broadcast",
+      "settings": {
+        "event_name": "faqSearch",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "color_scheme": "background-1"
+      }
+    },
+    "e901c7f1-2d78-474a-8423-2c55225d7702": {
+      "type": "custom-fields-pages",
       "blocks": {
-        "new-faq-item": {
-          "type": "faq",
+        "b449351d-14e6-4fbc-b608-4fe4147fcfa5": {
+          "type": "cf_w_tabs2",
           "settings": {
-            "title": "Can I return all or part of my order?",
-            "answer": "Just open your customizer"
+            "key": "custom_fields.tabs_faqs",
+            "event_name": "faqSearch",
+            "section_title_text": "",
+            "section_title_tag": "h2",
+            "section_title_margin_bottom": 0,
+            "section_title_color": "",
+            "cols": "12",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "widget_height_speed": 0,
+            "widget_fade_speed": 0,
+            "title_font_size": 20,
+            "title_font_color": "",
+            "title_font_custom": false,
+            "title_font": "helvetica_n4",
+            "title_padding": "0px 0px",
+            "body_font_size": 16,
+            "body_font_color": "",
+            "body_padding": "0px"
           }
         }
       },
-      "block_order": [ "new-faq-item" ],
+      "block_order": [
+        "b449351d-14e6-4fbc-b608-4fe4147fcfa5"
+      ],
       "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28
+        "padding_top": 0,
+        "padding_bottom": 36,
+        "color_scheme": "background-1"
       }
     }
   },
   "order": [
-    "main"
+    "cf80138c-c06e-4dd2-9623-8822c3a8c550",
+    "e901c7f1-2d78-474a-8423-2c55225d7702"
   ]
 }

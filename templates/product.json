@@ -47,7 +47,7 @@
           "settings": {
             "heading": "Materials",
             "icon": "leather",
-            "content": "",
+            "content": "<p>{{ product.metafields.custom.materials | metafield_tag }}<\/p>",
             "page": ""
           }
         },
@@ -57,7 +57,7 @@
             "heading": "Shipping & Returns",
             "icon": "truck",
             "content": "",
-            "page": ""
+            "page": "return-conditions"
           }
         },
         "collapsible-row-2": {
