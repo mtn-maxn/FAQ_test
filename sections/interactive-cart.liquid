@@ -1,0 +1,57 @@
+<style>
+	.interactive-cart {
+			position: relative;
+			height: 0;
+	}
+
+  .interactive-cart__background {
+		  background-color: rgba(0,0,0,0.5);
+      position: fixed;
+      top: 0;
+		  left: 0;
+		  width: 100vh;
+		  height: 100vh;
+      z-index: 9999;
+  }
+
+  .interactive-cart__background.is-hidden {
+		  display: none;
+  }
+
+  .cart-btn {
+		  position: fixed;
+		  top: 0;
+		  right: 0;
+		  z-index: 9999;
+  }
+</style>
+
+<interactive-cart class="interactive-cart">
+	<div data-id="interactive-cart-background" class="interactive-cart__background">''</div>
+	<button class="cart-btn">Show</button>
+</interactive-cart>
+
+<script>
+	class InteractiveCart extends HTMLElement {
+    constructor() {
+      super();
+      this.elements = {
+        background: this.querySelector('[data-id="interactive-cart-background"]'),
+	      cartBtn: this.querySelector('button')
+      }
+
+      this.elements.background.addEventListener('click', this.hideCart.bind(this))
+      this.elements.cartBtn.addEventListener('click', this.showCart.bind(this))
+    }
+
+    hideCart() {
+      this.elements.background.hidden = true
+    }
+
+    showCart() {
+      this.elements.background.hidden = false
+    }
+	}
+
+  customElements.define('interactive-cart', InteractiveCart)
+</script>
