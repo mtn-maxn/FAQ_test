@@ -18,6 +18,8 @@
           this.nextElementSibling.classList.toggle(
             'is-visible'
           );
+
+//          this.nextElementSibling.style.maxHeight = this.nextElementSibling.scrollHeight + 'px'
         });
       }
       const handleSearch = debounce((searchStr = '') => {
