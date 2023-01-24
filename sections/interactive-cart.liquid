@@ -10,7 +10,7 @@
       position: fixed;
       top: 0;
 		  left: 0;
-		  width: 100vh;
+		  width: 100vw;
 		  height: 100vh;
       z-index: 9999;
 		  opacity: 0;
@@ -42,6 +42,7 @@
 		  visibility: hidden;
 		  transform: translateX(70%);
 		  transition: transform .3s ease;
+		  overflow-y: auto;
   }
   .interactive-cart__sidebar.is-open {
 		  transform: translateX(0);
@@ -52,8 +53,13 @@
 
 <interactive-cart class="interactive-cart">
 	<div data-id="interactive-cart-background" class="interactive-cart__background">''</div>
-	<div data-id="interactive-cart-sidebar" class="interactive-cart__sidebar">Hello cart</div>
-	<button class="cart-btn">Show</button>
+	<div tabindex="999" data-id="interactive-cart-sidebar" class="interactive-cart__sidebar">
+		<h2>Hello cart</h2>
+		<button aria-label="Close" data-id="interactive-cart-close-btn" class="cart-btn">hide</button>
+		<button>First</button>
+		<button>Second</button>
+		<button>Last</button>
+	</div>
 </interactive-cart>
 
 <script>
@@ -62,12 +68,24 @@
       super();
       this.elements = {
         background: this.querySelector('[data-id="interactive-cart-background"]'),
-	      cartBtn: this.querySelector('button'),
-	      sidebar: this.querySelector('[data-id="interactive-cart-sidebar"]')
+        openCartBtn: document.querySelector('#cart-icon-bubble'),
+        closeCartBtn: this.querySelector('[data-id="interactive-cart-close-btn"]'),
+        sidebar: this.querySelector('[data-id="interactive-cart-sidebar"]')
       }
 
+      this.addKeyboardHandlers()
+
       this.elements.background.addEventListener('click', this.hideCart.bind(this))
-      this.elements.cartBtn.addEventListener('click', this.showCart.bind(this))
+      this.elements.closeCartBtn.addEventListener('click', this.hideCart.bind(this))
+      this.elements.openCartBtn.addEventListener('click', this.showCart.bind(this))
+    }
+
+    addKeyboardHandlers() {
+      document.onkeydown = (e) => {
+        if(e.key === 'Escape' || e.key === 'Esc') {
+          this.hideCart()
+        }
+      }
     }
 
     hideCart() {
@@ -75,9 +93,11 @@
 	    this.elements.sidebar.classList.remove('is-open')
     }
 
-    showCart() {
+    showCart(e) {
+      e.preventDefault()
       this.elements.background.classList.add('is-visible')
 	    this.elements.sidebar.classList.add('is-open')
+	    this.elements.sidebar.focus()
     }
 	}
 
