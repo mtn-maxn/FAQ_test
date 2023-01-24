@@ -22,7 +22,7 @@
 	        <use xlink:href="#icon-search">
 	      </svg>
 	    </div>
-	    <input placeholder="Search FAQ" class="component-search-broadcast__input" type="text">
+	    <input placeholder="{{ section.settings.placeholder }}" class="component-search-broadcast__input" type="text">
 	  </div>
 	</div>
 </search-broadcast>
@@ -64,6 +64,12 @@
           "id": "event_name",
           "label": "Event name",
           "info": "An event name that will be broadcasting via EventBus"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Placeholder",
+          "default": "Search"
         },
         {
           "type": "range",
