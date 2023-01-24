@@ -14,35 +14,44 @@
     }
   }
 {%- endstyle -%}
+<search-broadcast data-event-name="{{ section.settings.event_name }}" class="color-{{ section.settings.color_scheme }} gradient">
+	<div class="page-width page-width--narrow section-{{ section.id }}-padding">
+	  <div class="component-search-broadcast__wrap">
+	    <div class="component-search-broadcast__icon-wrap">
+	      <svg class="icon icon-search component-search-broadcast__icon">
+	        <use xlink:href="#icon-search">
+	      </svg>
+	    </div>
+	    <input placeholder="Search FAQ" class="component-search-broadcast__input" type="text">
+	  </div>
+	</div>
+</search-broadcast>
+{% javascript %}
+  class SearchBroadcast extends HTMLElement {
+    constructor() {
+      super();
 
-<div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="page-width page-width--narrow section-{{ section.id }}-padding">
-    <div id="{{ section.id }}">
-      <div class="component-search-broadcast__wrap">
-        <div class="component-search-broadcast__icon-wrap">
-          <svg class="icon icon-search component-search-broadcast__icon">
-            <use xlink:href="#icon-search">
-          </svg>
-        </div>
-        <input placeholder="Search FAQ" class="component-search-broadcast__input" type="text">
-      </div>
-    </div>
-  </div>
-</div>
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const section = document.getElementById('{{ section.id }}')
-    const input = section.querySelector('input')
+      this.elements = {
+        input: this.querySelector('input')
+      }
 
-    input.addEventListener('input', function() {
+      this.eventName = this.getAttribute('data-event-name')
+
+      if(!this.eventName) throw new Error('please specify the event name in Search Broadcast section')
+
+      this.elements.input.addEventListener('input', this.handleInput.bind(this))
+    }
+
+    handleInput() {
       if(!eventBus) {
         console.warn('Instance of EventBus not found')
         return
       }
-      eventBus.emit('{{ section.settings.event_name }}', this.value)
-    })
-  })
-</script>
+      eventBus.emit(this.eventName, this.elements.input.value)
+    }
+  }
+  customElements.define('search-broadcast', SearchBroadcast)
+{% endjavascript %}
 
 {% schema %}
     {
@@ -54,8 +63,7 @@
           "type": "text",
           "id": "event_name",
           "label": "Event name",
-          "info": "An event name that will be broadcasting via EventBus",
-          "default": "faqSearch"
+          "info": "An event name that will be broadcasting via EventBus"
         },
         {
           "type": "range",
