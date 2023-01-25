@@ -137,9 +137,6 @@
       if(!this.elements.openCartBtn)
         throw new Error('The cart button is not found. Please specify a proper id in the "Interactive Cart Sidebar" settings')
 
-      this.loopFocus(this.elements.sidebar)
-      this.addKeyboardHandlers()
-
       this.elements.background.addEventListener('click', this.hideCart.bind(this))
       this.elements.sidebar.addEventListener('click', () => { this.elements.sidebar.focus() })
       this.elements.closeCartBtn.addEventListener('click', this.hideCart.bind(this))
@@ -166,7 +163,10 @@
 	    this.elements.sidebar.classList.add('is-open')
 	    this.elements.sidebar.focus()
 
-	    this.fetchCart()
+	    this.fetchCart().then(() => {
+        this.loopFocus(this.elements.sidebar)
+        this.addKeyboardHandlers()
+	    })
     }
 
     loopFocus(modal) {
@@ -200,16 +200,18 @@
     }
 
     fetchCart() {
-      fetch(window.Shopify.routes.root + 'cart.js')
+      return fetch(window.Shopify.locale + '?sections=interactive-cart')
 	      .then(data => data.json())
-	      .then(this.renderCartItems)
+	      .then(this.renderCartContent.bind(this))
 		}
 
-    renderCartItems(cart) {
-
+    renderCartContent(section) {
+      const template = document.createElement('template')
+      template.innerHTML = section['interactive-cart']
+	    this.elements.tableBody.innerHTML = template.content.firstChild.querySelector('[data-id="table-body"]').innerHTML
     }
 
-    createCartProduct({ title, variantTitle, image, url, price, linePrice, key, quantity, currency }) {
+    /*createCartProduct({ title, variantTitle, image, url, price, linePrice, key, quantity, currency }) {
       const product = document.createElement('div')
       product.classList.add('interactive-cart__product')
       product.innerHTML = `
@@ -224,7 +226,7 @@
 				<h3>${price} ${currency}</h3>
 	    `
 	    return product
-    }
+    }*/
 	}
 
   customElements.define('interactive-cart', InteractiveCart)
