@@ -125,8 +125,11 @@
       "interactive-cart": {
         "type": "interactive-cart",
         "settings": {
+          "cart_button_id": "cart-icon-bubble",
           "sidebar_switcher": true,
-          "cart_button_id": "cart-icon-bubble"
+          "padding_top": 36,
+          "padding_bottom": 36,
+          "padding_side": 12
         }
       },
       "announcement-bar": {

@@ -78,14 +78,30 @@
 >
 	<div data-id="interactive-cart-background" class="interactive-cart__background">''</div>
 	<div data-id="interactive-cart-sidebar" class="interactive-cart__sidebar section-{{ section.id }}-padding">
-		<h2>Hello cart</h2>
+		<h2>{{ 'sections.cart.title' | t }}</h2>
 		<button aria-label="Close" data-id="interactive-cart-close-btn" class="cart-btn">hide</button>
 		{%- if cart != empty -%}
-			<caption class="visually-hidden">{{ 'sections.cart.title' | t }}</caption>
 			<table>
 				<tbody>
 					{%- for item in cart.items -%}
-						<a href="{{ item.url }}">{{ item.product.title | escape }}</a>
+						<div>
+							<span>{{ item.index | plus: 1 }}</span>
+							<a href="{{ item.url | within: collections.all }}">
+								<img src="{{ item | img_url: 'small' }}" alt="{{ item.title | escape }}">
+							</a>
+							<div class="d-flex flex-column">
+								<a href="{{ item.url }}">{{ item.product.title }}</a>
+								{{ item.variant.title }}
+								<button data-id="remove_{{ item.key }}">remove</button>
+							</div>
+							<h4>{{ item.price | money }}</h4>
+							<input type="number" data-id="count_{{ item.key }}" value="{{ item.quantity }}" min="0">
+							<div>
+								{% if item.original_line_price != item.line_price %}{{ item.original_line_price | money }}{% endif %}
+								{{ item.line_price | money }}
+								{% for discount in item.discounts %}{{ discount.title }}{% endfor %}
+							</div>
+						</div>
 					{% endfor %}
 				</tbody>
 			</table>
@@ -121,7 +137,7 @@
       this.elements.background.addEventListener('click', this.hideCart.bind(this))
       this.elements.sidebar.addEventListener('click', () => { this.elements.sidebar.focus() })
       this.elements.closeCartBtn.addEventListener('click', this.hideCart.bind(this))
-      this.elements.openCartBtn.addEventListener('click', this.showCart.bind(this))
+      this.elements.openCartBtn.addEventListener('click', this.onCartOpen.bind(this))
     }
 
     addKeyboardHandlers() {
@@ -138,11 +154,13 @@
 	    this.elements.lastFocusedElement?.focus()
     }
 
-    showCart(e) {
+    onCartOpen(e) {
       e.preventDefault()
       this.elements.background.classList.add('is-visible')
 	    this.elements.sidebar.classList.add('is-open')
 	    this.elements.sidebar.focus()
+
+	    this.updateMarkup()
     }
 
     loopFocus(modal) {
@@ -175,7 +193,8 @@
       firstFocusableElement.focus()
     }
 
-		fetchData() {
+    updateMarkup() {
+      fetch('/?sections="interactive-cart"').then(console.log)
 		}
 	}
 
