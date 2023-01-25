@@ -14,11 +14,12 @@
 		  height: 100vh;
       z-index: 9999;
 		  opacity: 0;
-		  transition: opacity .5s ease;
+		  transition: visibility .1s, opacity .1s ease;
   }
 
   .interactive-cart__background.is-visible {
-		  visibility: visible;
+      transition: visibility .3s, opacity .3s ease-out;
+      visibility: visible;
 		  opacity: 1;
   }
 
@@ -41,11 +42,12 @@
 		  opacity: 0;
 		  visibility: hidden;
 		  transform: translateX(70%);
-		  transition: transform .3s ease;
+		  transition: visibility .1s, opacity .1s, transform .1s ease;
 		  overflow-y: auto;
   }
   .interactive-cart__sidebar.is-open {
-		  transform: translateX(0);
+      transition: visibility .3s, opacity .3s, transform .3s ease-out;
+      transform: translateX(0);
 		  visibility: visible;
 		  opacity: 1;
   }
@@ -53,7 +55,7 @@
 
 <interactive-cart class="interactive-cart">
 	<div data-id="interactive-cart-background" class="interactive-cart__background">''</div>
-	<div tabindex="999" data-id="interactive-cart-sidebar" class="interactive-cart__sidebar">
+	<div data-id="interactive-cart-sidebar" class="interactive-cart__sidebar">
 		<h2>Hello cart</h2>
 		<button aria-label="Close" data-id="interactive-cart-close-btn" class="cart-btn">hide</button>
 		<button>First</button>
@@ -73,9 +75,11 @@
         sidebar: this.querySelector('[data-id="interactive-cart-sidebar"]')
       }
 
+      this.loopFocus(this.elements.sidebar)
       this.addKeyboardHandlers()
 
       this.elements.background.addEventListener('click', this.hideCart.bind(this))
+      this.elements.sidebar.addEventListener('click', () => { this.elements.sidebar.focus() })
       this.elements.closeCartBtn.addEventListener('click', this.hideCart.bind(this))
       this.elements.openCartBtn.addEventListener('click', this.showCart.bind(this))
     }
@@ -98,6 +102,36 @@
       this.elements.background.classList.add('is-visible')
 	    this.elements.sidebar.classList.add('is-open')
 	    this.elements.sidebar.focus()
+    }
+
+    loopFocus(modal) {
+      // https://uxdesign.cc/how-to-trap-focus-inside-modal-to-make-it-ada-compliant-6a50f9a70700
+      const  focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+
+      const focusableContent = modal.querySelectorAll(focusableElements)
+      const firstFocusableElement = focusableContent[0]
+      const lastFocusableElement = focusableContent[focusableContent.length - 1]
+
+
+      document.addEventListener('keydown', function(e) {
+        let isTabPressed = e.key === 'Tab'
+
+        if (!isTabPressed) return
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstFocusableElement) {
+            lastFocusableElement.focus()
+            e.preventDefault()
+          }
+        } else {
+          if (document.activeElement === lastFocusableElement) {
+            firstFocusableElement.focus()
+            e.preventDefault()
+          }
+        }
+      })
+
+      firstFocusableElement.focus()
     }
 	}
 
