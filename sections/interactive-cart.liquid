@@ -53,14 +53,43 @@
   }
 </style>
 
-<interactive-cart class="interactive-cart" cart_button_id="{{ section.settings.cart_button_id }}">
+{%- style -%}
+	.section-{{ section.id }}-padding {
+		padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+		padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+	  padding-left: {{ section.settings.padding_side | times: 0.75 | round: 0 }}px;
+	  padding-right: {{ section.settings.padding_side | times: 0.75 | round: 0 }}px;
+	}
+
+	@media screen and (min-width: 750px) {
+		.section-{{ section.id }}-padding {
+			padding-top: {{ section.settings.padding_top }}px;
+			padding-bottom: {{ section.settings.padding_bottom }}px;
+			padding-left: {{ section.settings.padding_side }}px;
+			padding-right: {{ section.settings.padding_side }}px;
+		}
+	}
+{%- endstyle -%}
+
+<interactive-cart
+	data-is-active="{{ section.settings.sidebar_switcher }}"
+	class="interactive-cart"
+	cart_button_id="{{ section.settings.cart_button_id }}"
+>
 	<div data-id="interactive-cart-background" class="interactive-cart__background">''</div>
-	<div data-id="interactive-cart-sidebar" class="interactive-cart__sidebar">
+	<div data-id="interactive-cart-sidebar" class="interactive-cart__sidebar section-{{ section.id }}-padding">
 		<h2>Hello cart</h2>
 		<button aria-label="Close" data-id="interactive-cart-close-btn" class="cart-btn">hide</button>
-		<button>First</button>
-		<button>Second</button>
-		<button>Last</button>
+		{%- if cart != empty -%}
+			<caption class="visually-hidden">{{ 'sections.cart.title' | t }}</caption>
+			<table>
+				<tbody>
+					{%- for item in cart.items -%}
+						<a href="{{ item.url }}">{{ item.product.title | escape }}</a>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% endif %}
 	</div>
 </interactive-cart>
 
@@ -68,6 +97,12 @@
 	class InteractiveCart extends HTMLElement {
     constructor() {
       super();
+
+      if(this.getAttribute('data-is-active') === 'false') {
+        this.hidden = true
+	      return
+      }
+
       this.elements = {
         lastFocusElement: document.activeElement,
 
@@ -139,6 +174,9 @@
 
       firstFocusableElement.focus()
     }
+
+		fetchData() {
+		}
 	}
 
   customElements.define('interactive-cart', InteractiveCart)
@@ -153,6 +191,42 @@
       "id": "cart_button_id",
 			"label": "Cart button id",
 			"info": "Id of a button or a link that opens the cart page"
+    },
+    {
+      "type": "checkbox",
+      "id": "sidebar_switcher",
+      "label": "Turn off or turn on the Interactive Cart Sidebar",
+	    "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_side",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_side",
+      "default": 8
     }
 	]
 }

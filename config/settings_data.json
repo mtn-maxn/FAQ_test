@@ -125,6 +125,7 @@
       "interactive-cart": {
         "type": "interactive-cart",
         "settings": {
+          "sidebar_switcher": true,
           "cart_button_id": "cart-icon-bubble"
         }
       },
