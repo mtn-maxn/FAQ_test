@@ -122,6 +122,12 @@
     "show_vendor": false,
     "show_cart_note": false,
     "sections": {
+      "interactive-cart": {
+        "type": "interactive-cart",
+        "settings": {
+          "cart_button_id": "cart-icon-bubble"
+        }
+      },
       "announcement-bar": {
         "type": "announcement-bar",
         "blocks": {

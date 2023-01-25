@@ -53,7 +53,7 @@
   }
 </style>
 
-<interactive-cart class="interactive-cart">
+<interactive-cart class="interactive-cart" cart_button_id="{{ section.settings.cart_button_id }}">
 	<div data-id="interactive-cart-background" class="interactive-cart__background">''</div>
 	<div data-id="interactive-cart-sidebar" class="interactive-cart__sidebar">
 		<h2>Hello cart</h2>
@@ -72,10 +72,13 @@
         lastFocusElement: document.activeElement,
 
         background: this.querySelector('[data-id="interactive-cart-background"]'),
-        openCartBtn: document.querySelector('#cart-icon-bubble'),
+        openCartBtn: document.getElementById(this.getAttribute('cart_button_id')),
         closeCartBtn: this.querySelector('[data-id="interactive-cart-close-btn"]'),
         sidebar: this.querySelector('[data-id="interactive-cart-sidebar"]')
       }
+
+      if(!this.elements.openCartBtn)
+        throw new Error('The cart button is not found. Please specify a proper id in the "Interactive Cart Sidebar" settings')
 
       this.loopFocus(this.elements.sidebar)
       this.addKeyboardHandlers()
@@ -140,3 +143,17 @@
 
   customElements.define('interactive-cart', InteractiveCart)
 </script>
+
+{% schema %}
+{
+	"name": "Interactive Cart Sidebar",
+	"settings": [
+		{
+      "type": "text",
+      "id": "cart_button_id",
+			"label": "Cart button id",
+			"info": "Id of a button or a link that opens the cart page"
+    }
+	]
+}
+{% endschema %}
