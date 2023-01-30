@@ -1,0 +1,283 @@
+<style>
+	.interactive-cart {
+			position: relative;
+			height: 0;
+	}
+
+  .interactive-cart__background {
+		  visibility: hidden;
+		  background-color: rgba(0,0,0,0.5);
+      position: fixed;
+      top: 0;
+		  left: 0;
+		  width: 100vw;
+		  height: 100vh;
+      z-index: 9999;
+		  opacity: 0;
+		  transition: visibility .1s, opacity .1s ease;
+  }
+
+  .interactive-cart__background.is-visible {
+      transition: visibility .3s, opacity .3s ease-out;
+      visibility: visible;
+		  opacity: 1;
+  }
+
+  .cart-btn {
+		  position: fixed;
+		  top: 0;
+		  right: 0;
+		  z-index: 9999;
+  }
+
+  .interactive-cart__sidebar {
+		  position: fixed;
+      z-index: 9999;
+      top: 0;
+		  right: 0;
+		  width: 400px;
+		  max-width: 90%;
+		  height: 100vh;
+      background: rgb(var(--color-base-background-1));
+		  opacity: 0;
+		  visibility: hidden;
+		  transform: translateX(70%);
+		  transition: visibility .1s, opacity .1s, transform .1s ease;
+		  overflow-y: auto;
+  }
+  .interactive-cart__sidebar.is-open {
+      transition: visibility .3s, opacity .3s, transform .3s ease-out;
+      transform: translateX(0);
+		  visibility: visible;
+		  opacity: 1;
+  }
+
+  .interactive-cart__product {
+
+  }
+</style>
+
+{%- style -%}
+	.section-{{ section.id }}-padding {
+		padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+		padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+	  padding-left: {{ section.settings.padding_side | times: 0.75 | round: 0 }}px;
+	  padding-right: {{ section.settings.padding_side | times: 0.75 | round: 0 }}px;
+	}
+
+	@media screen and (min-width: 750px) {
+		.section-{{ section.id }}-padding {
+			padding-top: {{ section.settings.padding_top }}px;
+			padding-bottom: {{ section.settings.padding_bottom }}px;
+			padding-left: {{ section.settings.padding_side }}px;
+			padding-right: {{ section.settings.padding_side }}px;
+		}
+	}
+{%- endstyle -%}
+
+<interactive-cart
+	data-is-active="{{ section.settings.sidebar_switcher }}"
+	class="interactive-cart"
+	cart_button_id="{{ section.settings.cart_button_id }}"
+>
+	<div data-id="interactive-cart-background" class="interactive-cart__background">''</div>
+	<div data-id="interactive-cart-sidebar" class="interactive-cart__sidebar section-{{ section.id }}-padding">
+		<h2>{{ 'sections.cart.title' | t }}</h2>
+		<button aria-label="Close" data-id="interactive-cart-close-btn" class="cart-btn">hide</button>
+		{%- if cart != empty -%}
+			<div data-id="table-body">
+				{%- for item in cart.items -%}
+					<div>
+						<span>{{ item.index | plus: 1 }}</span>
+						<a href="{{ item.url | within: collections.all }}">
+							<img src="{{ item | img_url: 'small' }}" alt="{{ item.title | escape }}">
+						</a>
+						<div>
+							<a href="{{ item.url }}">{{ item.product.title }}</a>
+							{{ item.variant.title }}
+							<button data-id="remove_{{ item.key }}">remove</button>
+						</div>
+						<h4>{{ item.price | money }}</h4>
+						<input type="number" data-id="count_{{ item.key }}" value="{{ item.quantity }}" min="0">
+					</div>
+				{% endfor %}
+			</div>
+			<div data-id="table-footer">
+				{% if item.original_line_price != item.line_price %}{{ item.original_line_price | money }}{% endif %}
+				{{ item.line_price | money }}
+				{% for discount in item.discounts %}{{ discount.title }}{% endfor %}
+			</div>
+
+		{% endif %}
+	</div>
+</interactive-cart>
+
+<script>
+	class InteractiveCart extends HTMLElement {
+    constructor() {
+      super();
+
+      if(this.getAttribute('data-is-active') === 'false') {
+        this.hidden = true
+	      return
+      }
+
+      this.elements = {
+        lastFocusElement: document.activeElement,
+
+        background: this.querySelector('[data-id="interactive-cart-background"]'),
+        openCartBtn: document.getElementById(this.getAttribute('cart_button_id')),
+        closeCartBtn: this.querySelector('[data-id="interactive-cart-close-btn"]'),
+        sidebar: this.querySelector('[data-id="interactive-cart-sidebar"]'),
+
+	      tableBody: this.querySelector('[data-id="table-body"]'),
+	      tableFooter: this.querySelector('[data-id="table-footer"]'),
+      }
+
+      if(!this.elements.openCartBtn)
+        throw new Error('The cart button is not found. Please specify a proper id in the "Interactive Cart Sidebar" settings')
+
+      this.elements.background.addEventListener('click', this.hideCart.bind(this))
+      this.elements.sidebar.addEventListener('click', () => { this.elements.sidebar.focus() })
+      this.elements.closeCartBtn.addEventListener('click', this.hideCart.bind(this))
+      this.elements.openCartBtn.addEventListener('click', this.onCartOpen.bind(this))
+    }
+
+    addKeyboardHandlers() {
+      document.onkeydown = (e) => {
+        if(e.key === 'Escape' || e.key === 'Esc') {
+          this.hideCart()
+        }
+      }
+    }
+
+    hideCart() {
+      this.elements.background.classList.remove('is-visible')
+	    this.elements.sidebar.classList.remove('is-open')
+	    this.elements.lastFocusedElement?.focus()
+    }
+
+    onCartOpen(e) {
+      e.preventDefault()
+      this.elements.background.classList.add('is-visible')
+	    this.elements.sidebar.classList.add('is-open')
+	    this.elements.sidebar.focus()
+
+	    this.fetchCart().then(() => {
+        this.loopFocus(this.elements.sidebar)
+        this.addKeyboardHandlers()
+	    })
+    }
+
+    loopFocus(modal) {
+      // https://uxdesign.cc/how-to-trap-focus-inside-modal-to-make-it-ada-compliant-6a50f9a70700
+      const  focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+
+      const focusableContent = modal.querySelectorAll(focusableElements)
+      const firstFocusableElement = focusableContent[0]
+      const lastFocusableElement = focusableContent[focusableContent.length - 1]
+
+
+      document.addEventListener('keydown', (e) => {
+        let isTabPressed = e.key === 'Tab'
+
+        if (!isTabPressed) return
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstFocusableElement) {
+            lastFocusableElement.focus()
+            e.preventDefault()
+          }
+        } else {
+          if (document.activeElement === lastFocusableElement) {
+            firstFocusableElement.focus()
+            e.preventDefault()
+          }
+        }
+      })
+
+      firstFocusableElement.focus()
+    }
+
+    fetchCart() {
+      return fetch(window.Shopify.locale + '?sections=interactive-cart')
+	      .then(data => data.json())
+	      .then(this.renderCartContent.bind(this))
+		}
+
+    renderCartContent(section) {
+      const template = document.createElement('template')
+      template.innerHTML = section['interactive-cart']
+	    this.elements.tableBody.innerHTML = template.content.firstChild.querySelector('[data-id="table-body"]').innerHTML
+    }
+
+    /*createCartProduct({ title, variantTitle, image, url, price, linePrice, key, quantity, currency }) {
+      const product = document.createElement('div')
+      product.classList.add('interactive-cart__product')
+      product.innerHTML = `
+	      <span>${key}</span>
+				<h3>
+					<a href="${url}">${title}</a>
+        </h3>
+				<h4>${variantTitle}</h4>
+				<img src="${image}" alt="${variantTitle}">
+				<h3>${linePrice} ${currency}</h3>
+				<h3>${quantity}</h3>
+				<h3>${price} ${currency}</h3>
+	    `
+	    return product
+    }*/
+	}
+
+  customElements.define('interactive-cart', InteractiveCart)
+</script>
+
+{% schema %}
+{
+	"name": "Interactive Cart Sidebar",
+	"settings": [
+		{
+      "type": "text",
+      "id": "cart_button_id",
+			"label": "Cart button id",
+			"info": "Id of a button or a link that opens the cart page"
+    },
+    {
+      "type": "checkbox",
+      "id": "sidebar_switcher",
+      "label": "Turn off or turn on the Interactive Cart Sidebar",
+	    "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_side",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_side",
+      "default": 8
+    }
+	]
+}
+{% endschema %}
